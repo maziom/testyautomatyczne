@@ -1,0 +1,38 @@
+import { test, expect } from '@playwright/test';
+
+test('test-order-blik', async ({ page }) => {
+  await page.goto('https://ponadczasowi.pl/');
+  await page.getByRole('button', { name: 'Zezwól na wszystkie' }).click();
+  await page.getByRole('searchbox', { name: 'Czego szukasz?' }).click();
+  await page.getByRole('searchbox', { name: 'Czego szukasz?' }).fill('torebka');
+  await page.getByRole('searchbox', { name: 'Czego szukasz?' }).press('Enter');
+  await page.getByRole('img', { name: 'Ekologiczna Torebka Prezentowa' }).click();
+  await page.getByRole('button', { name: ' DODAJ DO KOSZYKA + WYBIERZ' }).click();
+  await page.getByRole('link', { name: 'PRZEJDŹ DO KOSZYKA' }).click();
+  await page.getByRole('link', { name: 'PRZEJDŹ DO KASY' }).click();
+  await page.getByPlaceholder('Imię *').click();
+  await page.getByPlaceholder('Imię *').fill('test');
+  await page.getByPlaceholder('Imię *').press('Tab');
+  await page.getByPlaceholder('Nazwisko *').fill('test');
+  await page.getByPlaceholder('Nazwisko *').press('Tab');
+  await page.getByPlaceholder('Adres e-mail *').fill('test@gmail.com');
+  await page.getByPlaceholder('Adres e-mail *').press('Tab');
+  await page.getByPlaceholder('Telefon *').fill('123456789');
+  await page.getByPlaceholder('Telefon *').press('Tab');
+  await page.getByPlaceholder('Ulica *').fill('ulicowa');
+  await page.getByPlaceholder('Ulica *').press('Tab');
+  await page.getByPlaceholder('Nr *').fill('1');
+  await page.getByPlaceholder('Nr *').press('Tab');
+  await page.getByPlaceholder('Kod *').fill('11-111');
+  await page.getByPlaceholder('Kod *').press('Tab');
+  await page.getByPlaceholder('Miasto *').fill('miasto');
+  await page.getByPlaceholder('Miasto *').press('Tab');
+  await page.getByLabel('Odbiór osobisty (').check();
+  await page.getByRole('radio', { name: 'BLIK' }).check();
+  await page.getByText('Dodaj komentarz do zamówienia').click();
+  await page.getByPlaceholder('Dodaj komentarz').click();
+  await page.getByPlaceholder('Dodaj komentarz').fill('test');
+  await page.getByText('Akceptuję postanownienia').click();
+  await page.getByText('Wyrażam zgodę na').click();
+  await page.getByRole('button', { name: 'Zamawiam' }).click();
+});

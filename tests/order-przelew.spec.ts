@@ -1,23 +1,21 @@
 import { test, expect } from '@playwright/test';
 
-test('test', async ({ page }) => {
+test('test-order-przelew', async ({ page }) => {
   await page.goto('https://ponadczasowi.pl/');
   await page.getByRole('button', { name: 'Zezwól na wszystkie' }).click();
   await page.getByRole('searchbox', { name: 'Czego szukasz?' }).click();
   await page.getByRole('searchbox', { name: 'Czego szukasz?' }).fill('torebka');
   await page.getByRole('searchbox', { name: 'Czego szukasz?' }).press('Enter');
-  await page.locator('.btn-product').first().click();
+  await page.getByRole('img', { name: 'Ekologiczna Torebka Prezentowa' }).click();
+  await page.getByRole('button', { name: ' DODAJ DO KOSZYKA + WYBIERZ' }).click();
   await page.getByRole('link', { name: 'PRZEJDŹ DO KOSZYKA' }).click();
-  await page.getByRole('link', { name: 'PRZEJDŹ DO KASY' }).click({ timeout: 70000 });
-  await page.getByPlaceholder('Imię *').click({ timeout: 70000 });
-  await page.getByPlaceholder('Imię *').press('CapsLock');
-  await page.getByPlaceholder('Imię *').fill('T');
-  await page.getByPlaceholder('Imię *').press('CapsLock');
-  await page.getByPlaceholder('Imię *').fill('Test');
+  await page.getByRole('link', { name: 'PRZEJDŹ DO KASY' }).click();
+  await page.getByPlaceholder('Imię *').click();
+  await page.getByPlaceholder('Imię *').fill('test');
   await page.getByPlaceholder('Imię *').press('Tab');
-  await page.getByPlaceholder('Nazwisko *').fill('tes');
+  await page.getByPlaceholder('Nazwisko *').fill('test');
   await page.getByPlaceholder('Nazwisko *').press('Tab');
-  await page.getByPlaceholder('Adres e-mail *').fill('email@wp.pl');
+  await page.getByPlaceholder('Adres e-mail *').fill('test@gmail.com');
   await page.getByPlaceholder('Adres e-mail *').press('Tab');
   await page.getByPlaceholder('Telefon *').fill('123456789');
   await page.getByPlaceholder('Telefon *').press('Tab');
@@ -27,11 +25,15 @@ test('test', async ({ page }) => {
   await page.getByPlaceholder('Nr *').press('Tab');
   await page.getByPlaceholder('Kod *').fill('11-111');
   await page.getByPlaceholder('Kod *').press('Tab');
-  await page.getByPlaceholder('Miasto *').fill('rzeszów');
+  await page.getByPlaceholder('Miasto *').fill('miasto');
+  await page.getByPlaceholder('Miasto *').press('Tab');
   await page.getByLabel('Odbiór osobisty (').check();
-  await page.getByRole('radio', { name: 'BLIK' }).check();
+  await page.getByLabel('Tradycyjny przelew bankowy').check();
+  await page.getByText('Dodaj komentarz do zamówienia').click();
+  await page.getByPlaceholder('Dodaj komentarz').click();
+  await page.getByPlaceholder('Dodaj komentarz').fill('test');
   await page.getByText('Akceptuję postanownienia').click();
   await page.getByText('Wyrażam zgodę na').click();
   await page.getByRole('button', { name: 'Zamawiam' }).click();
-  await page.goto('https://e.blik.com/blik_web/index.html');
+  await page.goto('https://ponadczasowi.pl/sklep/otrzymane-zamowienie/319830/wc_order_FxVJ3pBB7k5od');
 });
